@@ -1,0 +1,10 @@
+.book-wrapper {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.book-wrapper img{
+    width: 200px;
+}
