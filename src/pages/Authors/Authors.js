@@ -17,7 +17,6 @@ const Authors = () => {
                 }
             });
             setAuthors(allAuthors);
-            console.log(allAuthors)
             setLoading(false);
         }
         getAuthors();
