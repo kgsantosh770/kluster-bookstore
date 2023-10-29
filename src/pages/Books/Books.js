@@ -19,7 +19,7 @@ const Books = () => {
             setLoading(false);
         }
         getBooks();
-    }, [page])
+    }, [page,person])
 
     function changePage(type) {
         setLoading(!loading);
@@ -42,7 +42,6 @@ const Books = () => {
                             {
                                 books.map((bookInfo, index) => {
                                     const book = bookInfo.volumeInfo;
-                                    if (bookInfo.id === "EHqaAAAAIAAJ") console.log(book)
                                     return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description} />
                                 })
                             }
