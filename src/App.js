@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Books from './pages/Books/Books';
 import Authors from './pages/Authors/Authors';
 import { Routes, Route } from "react-router-dom"
+import Cart from './pages/Cart/Cart';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/books/authors/:person" element={<Books />} />
           <Route path="/books" element={<Books />} />
           <Route path="/authors" element={<Authors />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<h1 style={{ textAlign: 'center' }}>404: Page Not Fount</h1>} />
         </Routes>
       </div>
