@@ -11,10 +11,13 @@ const Homepage = () => {
         async function getFeaturedBooks() {
             const response = await fetch(`${BOOK_LIST}${maxQuery(10)}`);
             let featuredBooks = await response.json();
-            setFeaturedBooks(featuredBooks.items);
-            setLoading(false);
+            return featuredBooks;
         }
-        getFeaturedBooks();
+        getFeaturedBooks()
+            .then(featuredBooks => {
+                setFeaturedBooks(featuredBooks.items);
+                setLoading(false);
+            })
     }, [])
 
     return (

@@ -11,15 +11,18 @@ const Books = () => {
     const [totalItems, setTotalItems] = useState(-1);
     useEffect(() => {
         async function getBooks() {
-            const url = person ? `${BOOK_LIST}${authorQuery(person)}` : `${BOOK_LIST}${startIndex(page*10)}${maxQuery(10)}`
+            const url = person ? `${BOOK_LIST}${authorQuery(person)}` : `${BOOK_LIST}${startIndex(page * 10)}${maxQuery(10)}`
             const response = await fetch(url);
             const booksData = await response.json();
-            setTotalItems(booksData.totalItems);
-            setBooks(booksData.items);
-            setLoading(false);
+            return booksData;
         }
-        getBooks();
-    }, [page,person])
+        getBooks()
+            .then(booksData => {
+                setTotalItems(booksData.totalItems);
+                setBooks(booksData.items);
+                setLoading(false);
+            })
+    }, [page, person])
 
     function changePage(type) {
         setLoading(!loading);
@@ -35,22 +38,22 @@ const Books = () => {
             {
                 loading ?
                     'Loading ...' :
-                    totalItems <=0 ? <h1 style={{margin: '3rem 0', textAlign: 'center'}}>No Results Found</h1> :
-                    <>
-                        <p style={{ textAlign: 'center' }}>Page: {page + 1}</p>
-                        <div className='books-row flex-wrap'>
-                            {
-                                books.map((bookInfo, index) => {
-                                    const book = bookInfo.volumeInfo;
-                                    return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description} />
-                                })
-                            }
-                        </div >
-                        <div className='pagination' style={{ margin: '2rem auto', width: 'max-content' }}>
-                            {page > 1 && <button style={{ marginRight: '1rem', background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('prev')}>Prev</button>}
-                            {totalItems >= 10 && <button style={{ background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('next')}>Next</button>}
-                        </div>
-                    </>
+                    totalItems <= 0 ? <h1 style={{ margin: '3rem 0', textAlign: 'center' }}>No Results Found</h1> :
+                        <>
+                            <p style={{ textAlign: 'center' }}>Page: {page + 1}</p>
+                            <div className='books-row flex-wrap'>
+                                {
+                                    books.map((bookInfo, index) => {
+                                        const book = bookInfo.volumeInfo;
+                                        return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description} />
+                                    })
+                                }
+                            </div >
+                            <div className='pagination' style={{ margin: '2rem auto', width: 'max-content' }}>
+                                {page > 1 && <button style={{ marginRight: '1rem', background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('prev')}>Prev</button>}
+                                {totalItems >= 10 && <button style={{ background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('next')}>Next</button>}
+                            </div>
+                        </>
             }
         </>
     )

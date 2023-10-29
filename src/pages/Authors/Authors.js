@@ -16,10 +16,13 @@ const Authors = () => {
                     allAuthors.push(...book.volumeInfo.authors);
                 }
             });
-            setAuthors(allAuthors);
-            setLoading(false);
+            return allAuthors;
         }
-        getAuthors();
+        getAuthors()
+            .then(allAuthors => {
+                setAuthors(allAuthors);
+                setLoading(false);
+            })
     }, [])
 
     return (
@@ -31,7 +34,7 @@ const Authors = () => {
                         <h2 className='title'>Few Authors</h2>
                         <ul className='authors-list'>
                             {
-                                authors.map((author,index) => <Link key={index} to={`/books/authors/${author}`} className='author'>{author}</Link>)
+                                authors.map((author, index) => <Link key={index} to={`/books/authors/${author}`} className='author'>{author}</Link>)
                             }
                         </ul>
                     </div>
