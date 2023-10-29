@@ -8,7 +8,7 @@ const Book = (props) => {
     <Link to={`/book/${props.id}`} element={<Detailpage />} className="book-wrapper">
         <img src={props.img} alt={props.title} />
         <p className='title'>Title: {props.title}</p>
-        <p className='desc'>Desc: {props.desc}</p>
+        <p className='desc ellipsis-text'>Desc: {props.desc}</p>
     </Link>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Book from '../../components/Book/Book'
+import { BOOK_LIST, maxQuery } from '../../Api'
 import './Homepage.css'
 
 const Homepage = () => {
@@ -8,9 +9,9 @@ const Homepage = () => {
 
     useEffect(() => {
         async function getFeaturedBooks() {
-            const response = await fetch('https://gutendex.com/books?ids=10,11,12,13,14');
+            const response = await fetch(`${BOOK_LIST}${maxQuery(10)}`);
             let featuredBooks = await response.json();
-            setFeaturedBooks(featuredBooks.results);
+            setFeaturedBooks(featuredBooks.items);
             setLoading(false);
         }
         getFeaturedBooks();
@@ -24,9 +25,12 @@ const Homepage = () => {
                 loading ?
                     'Loading ...' :
                     <div className='section-wrapper'>
-                        <div className='featured-books'>
+                        <div className='books-row'>
                             {
-                                featuredBooks.map((book) => <Book key={book.id} id={book.id} img={book.formats['image/jpeg']} title={book.title} desc={book.subjects.join(' ')} />)
+                                featuredBooks.map((bookInfo) => {
+                                    const book = bookInfo.volumeInfo;
+                                    return <Book key={bookInfo.id} id={bookInfo.id} img={book.imageLinks.smallThumbnail} title={book.title} desc={book.description} />
+                                })
                             }
                         </div>
                     </div>

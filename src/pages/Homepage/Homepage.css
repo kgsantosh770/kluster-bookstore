@@ -2,13 +2,6 @@
     overflow: hidden;
 }
 
-.featured-books {
-    display: flex;
-    gap: 2rem;
-    overflow-x: scroll;
-    padding-bottom: 1rem;
-}
-
 .welcome-note{
     margin-bottom: 3rem;
 }

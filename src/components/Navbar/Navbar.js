@@ -9,8 +9,8 @@ const Navbar = () => {
                 <Link to='/' className='nav-logo'>Kluster Bookstore</Link>
             </div>
             <div className='nav-list right-list'>
-                <Link to='' className='nav-item'>Books</Link>
-                <Link to='' className='nav-item'>Authors</Link>
+                <Link to='/books' className='nav-item'>Books</Link>
+                <Link to='/authors' className='nav-item'>Authors</Link>
                 <Link to='' className='nav-item'>Cart</Link>
             </div>
         </nav>

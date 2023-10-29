@@ -17,6 +17,15 @@ a {
   color: black;
 }
 
+.ellipsis-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4 * 1.2em;
+}
+
 ::-webkit-scrollbar {
   height: 6px;
   width: 6px

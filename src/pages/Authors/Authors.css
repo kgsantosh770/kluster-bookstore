@@ -1,0 +1,21 @@
+.authors-list {
+    margin: 0 auto;
+    width: max-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.authors-wrapper .title {
+    text-align: center;
+}
+
+.authors-list .author {
+    display: block;
+    padding: .5rem 4rem;
+    background: transparent;
+}
+
+.authors-list .author:hover {
+    background-color: gray;
+    color: white;
+}

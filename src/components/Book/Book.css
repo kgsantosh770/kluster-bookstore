@@ -7,7 +7,18 @@
     flex: 1;
 }
 
+.books-row {
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+    padding-bottom: 1rem;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
 .book-wrapper img{
-    width: 100%;
-    max-height: 220px;
+    width: 200px;
+    height: 150px;
 }
