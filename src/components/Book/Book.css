@@ -9,6 +9,7 @@
 
 .books-row {
     display: flex;
+    justify-content: center;
     gap: 2rem;
     overflow-x: scroll;
     padding-bottom: 1rem;
@@ -26,7 +27,6 @@
 @media only screen and (max-width: 768px) {
     .books-row{
         flex-wrap: wrap;
-        justify-content: center;
     }
 
     .book-wrapper{
