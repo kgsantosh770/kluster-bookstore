@@ -12,6 +12,7 @@ const Detailpage = () => {
         async function getBook() {
             const response = await fetch(`${SINGLE_BOOK}/${id}`)
             let book = await response.json();
+            console.log(book)
             setBook(book);
             if (isBookInCart(book.id)) setInCart(true);
             setLoading(false);
@@ -32,6 +33,10 @@ const Detailpage = () => {
             localStorage.setItem('cart', JSON.stringify(cart));
             setInCart(true);
         }
+
+        let cartPrice = JSON.parse(localStorage.getItem('cartPrice')) || 0;
+        cartPrice += parseFloat(book.saleInfo.retailPrice.amount);
+        localStorage.setItem('cartPrice',cartPrice);
     }
 
     function removeFromCart() {
@@ -42,6 +47,9 @@ const Detailpage = () => {
             localStorage.setItem('cart', JSON.stringify(cart));
             setInCart(false)
         }
+        let cartPrice = JSON.parse(localStorage.getItem('cartPrice')) || 0;
+        cartPrice -= parseFloat(book.saleInfo.retailPrice.amount);
+        localStorage.setItem('cartPrice',cartPrice);
     }
 
     const cartBtnStyle = {
@@ -56,7 +64,7 @@ const Detailpage = () => {
                     'Loading' :
                     <div className='detail-page'>
                         {
-                            inCart ?
+                            book.saleInfo?.saleability === 'FOR_SALE' ? inCart ?
                                 <button
                                     className='btn' style={cartBtnStyle}
                                     onClick={() => removeFromCart()}
@@ -66,11 +74,14 @@ const Detailpage = () => {
                                     className='btn' style={cartBtnStyle}
                                     onClick={() => addToCart()}
                                 >Add to Cart</button>
+                                :
+                                <p style={{textAlign: 'center'}}>BOOK NOT FOR SALE</p>
                         }
                         <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : DEFAULT_IMAGE} alt={book.volumeInfo?.title} style={{minWidth: '200px'}}/>
                         <h3>{book.volumeInfo?.title}</h3>
                         <p><b>Author:</b> {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? book.volumeInfo.authors.join(', ') : 'Unknown'}</p>
                         {book.volumeInfo?.publishedDate && <p><b>Published Date:</b> {book.volumeInfo?.publishedDate}</p>}
+                        {book.saleInfo?.retailPrice && <p><b>Price: </b> {book.saleInfo?.retailPrice.currencyCode} {book.saleInfo?.retailPrice.amount}</p>}
                         {book.volumeInfo?.categories && <p><b>Genre:</b> {book.volumeInfo?.categories.join(', ')}</p>}
                         <p><b>Description: </b>{book.volumeInfo.description ? <><br /><br /><span dangerouslySetInnerHTML={{ __html: book.volumeInfo.description }}></span></> : 'Not Available'}</p>
                     </div>

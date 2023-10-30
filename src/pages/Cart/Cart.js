@@ -5,6 +5,7 @@ import { DEFAULT_IMAGE } from '../../Api';
 
 const Cart = () => {
     const bookIds = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartPrice = JSON.parse(localStorage.getItem('cartPrice')) || 0;
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -36,6 +37,7 @@ const Cart = () => {
                     'Loading...' :
                     <div>
                         <h1 style={{ textAlign: 'center', margin: '0'}}>Cart Items</h1>
+                        <h3 style={{ textAlign: 'center', margin: '0'}}>Total Price: INR {cartPrice}</h3>
                         <small style={{textAlign: 'center', 'display':'block', marginBottom: '3rem'}}>**Get inside the book to remove it from cart</small>
                         <div className='books-row flex-wrap'>
                             {
