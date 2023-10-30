@@ -42,7 +42,6 @@ const Cart = () => {
                         <div className='books-row flex-wrap'>
                             {
                                 books.map((bookInfo, index) => {
-                                    console.log(bookInfo)
                                     const book = bookInfo.volumeInfo;
                                     return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description} />
                                 })
