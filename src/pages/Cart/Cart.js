@@ -12,7 +12,6 @@ const Cart = () => {
         async function getBooksByIds() {
             const bookList = [];
             for (const bookId of bookIds) {
-                console.log(bookId)
                 try {
                     const response = await fetch(`${SINGLE_BOOK}/${bookId}`);
                     const bookData = await response.json();
