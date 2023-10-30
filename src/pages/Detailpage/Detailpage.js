@@ -12,7 +12,6 @@ const Detailpage = () => {
         async function getBook() {
             const response = await fetch(`${SINGLE_BOOK}/${id}`)
             let book = await response.json();
-            console.log(book)
             setBook(book);
             if (isBookInCart(book.id)) setInCart(true);
             setLoading(false);
