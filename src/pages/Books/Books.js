@@ -50,8 +50,8 @@ const Books = () => {
                                 }
                             </div >
                             <div className='pagination' style={{ margin: '2rem auto', width: 'max-content' }}>
-                                {page > 1 && <button style={{ marginRight: '1rem', background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('prev')}>Prev</button>}
-                                {totalItems >= 10 && <button style={{ background: 'lightgrey', padding: '1rem', cursor: 'pointer' }} onClick={() => changePage('next')}>Next</button>}
+                                {page >= 1 && <button className='btn' style={{ marginRight: '1rem' }} onClick={() => changePage('prev')}>Prev</button>}
+                                {totalItems >= 10 && <button className='btn' onClick={() => changePage('next')}>Next</button>}
                             </div>
                         </>
             }

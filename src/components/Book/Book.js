@@ -7,8 +7,8 @@ const Book = (props) => {
   return (
     <Link to={`/book/${props.id}`} element={<Detailpage />} className="book-wrapper">
         <img src={props.img} alt={props.title} />
-        <p className='title'>Title: {props.title}</p>
-        <p className='desc ellipsis-text' dangerouslySetInnerHTML={{__html: 'Desc: '+props.desc}}></p>
+        <p className='title'><b>Title:</b> {props.title}</p>
+        <p className='desc ellipsis-text' dangerouslySetInnerHTML={{__html: '<b>Desc:</b> '+props.desc}}></p>
     </Link>
   )
 }

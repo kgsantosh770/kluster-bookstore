@@ -17,6 +17,15 @@ a {
   color: black;
 }
 
+.btn{
+    background: purple;
+    color: white;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
 .ellipsis-text {
   display: -webkit-box;
   -webkit-line-clamp: 4;

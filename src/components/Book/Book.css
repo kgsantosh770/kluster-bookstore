@@ -22,3 +22,19 @@
     width: 200px;
     height: 150px;
 }
+
+@media only screen and (max-width: 768px) {
+    .books-row{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .book-wrapper{
+        max-width: 250px;
+    }
+
+    .book-wrapper img{
+        margin: 0 auto;
+        display: block;
+    }
+}

@@ -19,3 +19,22 @@
     background-color: gray;
     color: white;
 }
+
+@media only screen and (max-width: 768px) {
+    .authors-list{
+        padding: 0;
+        grid-template-columns: 1fr;
+        text-wrap: wrap;
+        width: 80%;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .authors-list .author{
+        padding: .5rem 2rem;
+    }
+
+    .author:not(:last-child){
+        border-bottom: 1px solid black;
+    }
+}

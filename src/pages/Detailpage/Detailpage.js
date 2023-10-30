@@ -44,6 +44,11 @@ const Detailpage = () => {
         }
     }
 
+    const cartBtnStyle = {
+        display: 'block',
+        margin: '0 auto 2rem',
+    }
+
     return (
         <>
             {
@@ -53,16 +58,16 @@ const Detailpage = () => {
                         {
                             inCart ?
                                 <button
-                                    className='add-cart' style={{ display: 'block', margin: '0 auto', padding: '.5rem 2rem' }}
+                                    className='btn' style={cartBtnStyle}
                                     onClick={() => removeFromCart()}
                                 >Remove from Cart</button>
                                 :
                                 <button
-                                    className='add-cart' style={{ display: 'block', margin: '0 auto', padding: '.5rem 2rem' }}
+                                    className='btn' style={cartBtnStyle}
                                     onClick={() => addToCart()}
                                 >Add to Cart</button>
                         }
-                        <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : DEFAULT_IMAGE} alt={book.volumeInfo?.title} />
+                        <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.smallThumbnail : DEFAULT_IMAGE} alt={book.volumeInfo?.title} style={{minWidth: '200px'}}/>
                         <h3>{book.volumeInfo?.title}</h3>
                         <p><b>Author:</b> {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? book.volumeInfo.authors.join(', ') : 'Unknown'}</p>
                         {book.volumeInfo?.publishedDate && <p><b>Published Date:</b> {book.volumeInfo?.publishedDate}</p>}

@@ -31,7 +31,7 @@ const Authors = () => {
                 loading ?
                     'Loading ...' :
                     <div className='authors-wrapper'>
-                        <h2 className='title'>Few Authors</h2>
+                        <h2 className='title'>Authors</h2>
                         <ul className='authors-list'>
                             {
                                 authors.map((author, index) => <Link key={index} to={`/books/authors/${author}`} className='author'>{author}</Link>)

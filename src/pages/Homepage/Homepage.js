@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Book from '../../components/Book/Book'
 import { BOOK_LIST, maxQuery } from '../../Api'
-import './Homepage.css'
 
 const Homepage = () => {
     const [featuredBooks, setFeaturedBooks] = useState({});
@@ -22,12 +21,12 @@ const Homepage = () => {
 
     return (
         <div>
-            <h1 className='welcome-note'>Hi,</h1>
+            <h1 className='welcome-note' style={{textAlign:'center', marginBottom: '3rem'}}>Welcome to Kluster Bookstore</h1>
             <h2>Featured Books</h2>
             {
                 loading ?
                     'Loading ...' :
-                    <div className='section-wrapper'>
+                    <div className='section-wrapper' style={{overflow: 'hidden'}}>
                         <div className='books-row'>
                             {
                                 featuredBooks.map((bookInfo) => {
