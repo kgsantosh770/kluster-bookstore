@@ -9,23 +9,46 @@ const Books = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalItems, setTotalItems] = useState(-1);
-    const genreRef = useRef(null);
-    const sortRef = useRef(null);
+    const [genre, setGenre] = useState('Select genre');
+    const [sort, setSort] = useState('Select');
+
+    async function getBooks(url) {
+        const response = await fetch(url);
+        const booksData = await response.json();
+        return booksData;
+    }
 
     useEffect(() => {
-        async function getBooks() {
-            const url = person ? `${BOOK_LIST}${authorQuery(person)}` : `${BOOK_LIST}${startIndex(page * 10)}${maxQuery(10)}`
-            const response = await fetch(url);
-            const booksData = await response.json();
-            return booksData;
-        }
-        getBooks()
+        const url = person ? `${BOOK_LIST}${authorQuery(person)}` : `${BOOK_LIST}${startIndex(page * 10)}${maxQuery(10)}`
+        getBooks(url)
             .then(booksData => {
                 setTotalItems(booksData.totalItems);
                 setBooks(booksData.items);
                 setLoading(false);
             })
     }, [page, person])
+
+    useEffect(() => {
+        let url = SINGLE_BOOK + '?q=';
+        if (genre !== 'Select genre')
+            url += 'genre:' + genre;
+        if (genre !== 'Select genre' && sort !== 'Select')
+            url += '&'
+        if (sort !== 'Select')
+            url += 'orderBy=' + sort
+        if (genre === 'Select genre' && sort === 'Select')
+            return;
+        setLoading(true);
+        getBooks(url)
+            .then(booksData => {
+                setTotalItems(booksData.totalItems);
+                setBooks(booksData.items);
+                setPage(0);
+                setLoading(false);
+            })
+
+    }, [genre, sort])
+
 
     function changePage(type) {
         setLoading(!loading);
@@ -36,23 +59,6 @@ const Books = () => {
         setLoading(!loading);
     }
 
-    async function applyFilter() {
-        setLoading(true);
-        let url = SINGLE_BOOK + '?q=';
-        if (genreRef.current.value !== 'Select genre')
-            url += 'genre:' + genreRef.current.value;
-        if (genreRef.current.value !== 'Select genre' && sortRef.current.value !== 'Select')
-            url += '&'
-        if (sortRef.current.value !== 'Select')
-            url += 'orderBy=' + sortRef.current.value
-        const response = await fetch(url);
-        const booksData = await response.json();
-        console.log(booksData)
-        setTotalItems(booksData.totalItems);
-        setBooks(booksData.items);
-        setLoading(false);
-    }
-
     return (
         <>
             {
@@ -60,34 +66,36 @@ const Books = () => {
                     'Loading ...' :
                     totalItems <= 0 ? <h1 style={{ margin: '3rem 0', textAlign: 'center' }}>No Results Found</h1> :
                         <>
-                            <div className='filter'>
-                                <p>Filters:</p>
-                                <div>
-                                    <label>Genre: </label>
-                                    <select style={{ textTransform: 'capitalize' }} ref={genreRef}>
-                                        <option key={0}>Select genre</option>
-                                        {
-                                            GENRES.map((genre, index) => <option key={index + 1} style={{ textTransform: 'capitalize' }}>{genre}</option>)
-                                        }
-                                    </select>
+                            {
+                                person == undefined &&
+                                <div className='filter'>
+                                    <p>Filters:</p>
+                                    <div>
+                                        <label>Genre: </label>
+                                        <select style={{ textTransform: 'capitalize' }} value={genre} onChange={(e) => setGenre(e.target.value)}>
+                                            <option key={0}>Select genre</option>
+                                            {
+                                                GENRES.map((genre, index) => <option key={index + 1} style={{ textTransform: 'capitalize' }}>{genre}</option>)
+                                            }
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label>Sort by: </label>
+                                        <select style={{ marginTop: '1rem', textTransform: 'capitalize' }} value={sort} onChange={(e) => setSort(e.target.value)}>
+                                            <option key={0}>Select</option>
+                                            {
+                                                ['relevance', 'newest'].map((genre, index) => <option key={index + 1} style={{ textTransform: 'capitalize' }}>{genre}</option>)
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label>Sort by: </label>
-                                    <select style={{ marginTop: '1rem', textTransform: 'capitalize' }} ref={sortRef}>
-                                        <option key={0}>Select</option>
-                                        {
-                                            ['relevance', 'newest'].map((genre, index) => <option key={index + 1} style={{ textTransform: 'capitalize' }}>{genre}</option>)
-                                        }
-                                    </select>
-                                </div>
-                                <button style={{ padding: '.25rem', marginTop: '1rem' }} onClick={() => applyFilter()}>Apply Filters</button>
-                            </div>
+                            }
                             <p style={{ textAlign: 'center' }}>Page: {page + 1}</p>
                             <div className='books-row flex-wrap'>
                                 {
                                     books.map((bookInfo, index) => {
                                         const book = bookInfo.volumeInfo;
-                                        return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description} />
+                                        return <Book key={index} id={bookInfo.id} img={book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : DEFAULT_IMAGE} title={book.title} desc={book.description ? book.description : '-'} />
                                     })
                                 }
                             </div >
