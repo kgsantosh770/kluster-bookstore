@@ -15,7 +15,7 @@ This is a multi-page React application for managing a bookstore. It allows users
 
 3. **Books Page:**
    - Lists all available books.
-   - Includes filters to sort books by genre or author.
+   - Includes filters to sort books by genre, relevance and newest.
 
 4. **Authors Page:**
    - Lists all authors associated with the bookstore.
@@ -23,12 +23,17 @@ This is a multi-page React application for managing a bookstore. It allows users
 
 5. **Book Details:**
    - Allows users to view details of a specific book.
-   - Displays information such as title, author, genre, description, and cover image.
+   - Displays information such as title, author, price, genre, description, and cover image.
 
 6. **Shopping Cart:**
    - Lets users add books to their cart.
    - Displays the cart's contents, including book titles and total price.
    - Allows adding/removing items from the cart.
+
+## API
+
+Google Books API is used to fetch the books data.
+
 
 ## Local Setup
 
