@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Bookstore Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a multi-page React application for managing a bookstore. It allows users to browse books, authors, and manage a shopping cart. The application features navigation, a home page, book listing, author listing, book details, and a shopping cart.
 
-In the project directory, you can run:
+## Key Features
 
-### `npm start`
+1. **Navigation:**
+   - The navigation bar provides links to different pages of the application (Home, Books, Authors).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Home Page:**
+   - Welcomes users to the bookstore.
+   - Displays a featured book section with book cover, title, and a brief description.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Books Page:**
+   - Lists all available books.
+   - Includes filters to sort books by genre or author.
 
-### `npm test`
+4. **Authors Page:**
+   - Lists all authors associated with the bookstore.
+   - Clicking on an author's name displays a list of books written by that author.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Book Details:**
+   - Allows users to view details of a specific book.
+   - Displays information such as title, author, genre, description, and cover image.
 
-### `npm run build`
+6. **Shopping Cart:**
+   - Lets users add books to their cart.
+   - Displays the cart's contents, including book titles and total price.
+   - Allows adding/removing items from the cart.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Local Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run this ReactJS application locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+- Node.js and npm (Node Package Manager) should be installed on your computer. You can download them from [nodejs.org](https://nodejs.org/).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the GitHub repository to your local machine using the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+git clone https://github.com/kgsantosh770/kluster-bookstore.git
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Navigate to the project directory:
 
-## Learn More
+```
+cd bookstore-application
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Install the project dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm install
+```
 
-### Code Splitting
+### Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Start the development server:
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This command will start the development server, and your application will be available at [http://localhost:3000](http://localhost:3000) in your web browser.
 
-### Making a Progressive Web App
+### Using the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. You can now explore the application by navigating through the various pages using the navigation bar.
 
-### Advanced Configuration
+6. Feel free to browse books, authors, view book details, and manage the shopping cart as described in the Key Features section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Additional Notes
 
-### Deployment
+- Authentication and context API will be added in future.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+By following these steps, you should be able to set up and run the ReactJS bookstore application locally on your computer.
