@@ -27,6 +27,7 @@
 @media only screen and (max-width: 768px) {
     .books-row{
         flex-wrap: wrap;
+        justify-content: center !important;
     }
 
     .book-wrapper{
