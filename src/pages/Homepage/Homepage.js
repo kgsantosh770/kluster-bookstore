@@ -27,7 +27,7 @@ const Homepage = () => {
                 loading ?
                     'Loading ...' :
                     <div className='section-wrapper' style={{overflow: 'hidden'}}>
-                        <div className='books-row'>
+                        <div className='books-row' style={{justifyContent: 'start'}}>
                             {
                                 featuredBooks.map((bookInfo) => {
                                     const book = bookInfo.volumeInfo;
